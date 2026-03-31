@@ -272,28 +272,31 @@
 
             const blob = new Blob([vCardData], { type: 'text/vcard' });
 
-            // Web Share API – on Android/iOS opens native share sheet → Contacts app
-            if (navigator.share && navigator.canShare) {
+            function downloadFallback() {
+                const url = URL.createObjectURL(blob);
+                const link = document.createElement('a');
+                link.href = url;
+                link.setAttribute('download', 'sivan.vcf');
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                URL.revokeObjectURL(url);
+            }
+
+            // Web Share API with files – Android/iOS opens native share sheet → Contacts app
+            if (navigator.share) {
                 const file = new File([blob], 'sivan.vcf', { type: 'text/vcard' });
-                if (navigator.canShare({ files: [file] })) {
-                    navigator.share({ files: [file] }).catch(function(err) {
+                navigator.share({ files: [file] })
+                    .catch(function(err) {
                         if (err.name !== 'AbortError') {
-                            window.location.href = 'sivan.vcf';
+                            downloadFallback();
                         }
                     });
-                    return;
-                }
+                return;
             }
 
             // Fallback for desktop browsers
-            const url = URL.createObjectURL(blob);
-            const link = document.createElement('a');
-            link.href = url;
-            link.setAttribute('download', 'sivan.vcf');
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-            URL.revokeObjectURL(url);
+            downloadFallback();
         }
     </script>
 </body>
