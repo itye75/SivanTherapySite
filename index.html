@@ -60,7 +60,7 @@
                     </div>
                     <span class="text-xs font-semibold" aria-hidden="true">וואטסאפ</span>
                 </a>
-                <a href="#" aria-label="עמוד הפייסבוק של סיון אייל" class="icon-btn flex flex-col items-center">
+                <a href="https://www.facebook.com/sivan.eyal.3" target="_blank" rel="noopener noreferrer" aria-label="עמוד הפייסבוק של סיון אייל" class="icon-btn flex flex-col items-center">
                     <div class="w-12 h-12 bg-blue-50 rounded-full flex items-center justify-center mb-2 shadow-sm text-blue-600" aria-hidden="true">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
                     </div>
@@ -258,15 +258,7 @@
 
     <script>
         function saveContact() {
-            const vCardData = `BEGIN:VCARD\nVERSION:3.0\nFN:סיון אייל\nORG:פסיכותרפיה אינטגרטיבית וטיפול באמנות\nTITLE:פסיכותרפיסטית (M.A)\nTEL;TYPE=CELL:050-9981821\nEMAIL:sivan.eyal2@gmail.com\nADR;TYPE=WORK;;גילון, משגב;Israel\nEND:VCARD`;
-            const blob = new Blob([vCardData], { type: 'text/vcard' });
-            const url = window.URL.createObjectURL(blob);
-            const link = document.createElement('a');
-            link.href = url;
-            link.setAttribute('download', 'Sivan_Eyal.vcf');
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
+            window.location.href = 'sivan.vcf';
         }
     </script>
 </body>
