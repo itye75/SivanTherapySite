@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://sivaneyal.co.il/sitemap.xml
